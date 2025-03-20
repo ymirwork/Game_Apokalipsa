@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca02wfkcv2qoi"]
+
+[ext_resource type="Texture2D" uid="uid://bva4j7whku0p3" path="res://Assets/Art/defensive_construction.png" id="1_t457f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l83y0"]
+size = Vector2(33, 32)
+
+[node name="Kafelek" type="Node2D"]
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_t457f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_l83y0")
