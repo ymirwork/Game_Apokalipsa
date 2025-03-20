@@ -25,14 +25,25 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/viewport_width=2340
+window/size/viewport_width=1170
+window/size/viewport_height=540
 window/stretch/mode="viewport"
-window/size/viewport_height=1080
 
 [editor]
 
 naming/default_signal_callback_name="on_{node_name}_{signal_name}"
 naming/default_signal_callback_to_self_name="on_{signal_name}"
+
+[input]
+
+touch={
+"deadzone": 0.5,
+"events": []
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
