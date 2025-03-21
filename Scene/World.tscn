@@ -31,6 +31,7 @@ sources/2 = SubResource("TileSetScenesCollectionSource_va7fp")
 
 [node name="BuildingSystem" type="Node2D" parent="."]
 script = ExtResource("1_i6g2k")
+temp_scene_building = ExtResource("4_ihn5w")
 
 [node name="World" type="Node2D" parent="."]
 
