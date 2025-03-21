@@ -12,17 +12,13 @@ var preview_tile: Vector2i:
 	set(value):
 		if preview_tile == value:
 			return
+			
 		for x in range(builiding_size.x):
 			for y in range(builiding_size.y):
 				var old_tile = preview_tile + Vector2i(x,y)
 				preview.erase_cell(old_tile)
 		# update tile
 		preview_tile = value
-		# draw and set new value
-		for x in range(builiding_size.x):
-			for y in range(builiding_size.y):
-				var new_tile = preview_tile + Vector2i(x,y)
-				preview.set_cell(new_tile, scene_tile_building, Vector2i(0,0),building_id)
 
 var scene_tile_building: int = 2 # later adding from Building_Resources
 var building_id: int = 1
@@ -51,23 +47,24 @@ func _input(event: InputEvent) -> void:
 
 func place_building(top_left_pos: Vector2i):
 	var can_place = true
+	# Zmiana: Sprawdzenie całego obszaru
 	for x in range(builiding_size.x):
 		for y in range(builiding_size.y):
 			var tile = top_left_pos + Vector2i(x,y)
-			if buildable.get_cell_source_id(tile) != -1: # occupied cell?
+			print(tile)
+			if buildable.get_cell_source_id(tile) != -1: # sprawdzenie zajętości
 				can_place = false
 				break
-			if not can_place:
-				return
+			
 	if can_place:
 		for x in range(builiding_size.x):
 			for y in range(builiding_size.y):
-				if !builidng_array.has(Vector2i(x,y)):
-					var tile = top_left_pos + Vector2i(x,y)
-					buildable.set_cell(tile, scene_tile_building, Vector2i(0,0),building_id)
-					print("X: ", x, "Y: ", y)
-					builidng_array.append(Vector2i(x,y))
-		var spawn_building = temp_scene_building.instantiate()
-		var building_pos = buildable.map_to_local(top_left_pos)
-		spawn_building.position = building_pos
-		add_child(spawn_building)
+				var tile = top_left_pos + Vector2i(x,y)
+				var surrounding = buildable.get_surrounding_cells(top_left_pos)
+				builidng_array.append(tile)
+				print(builidng_array)
+				buildable.set_cell(tile, scene_tile_building, Vector2i(0,0), building_id)
+				var spawn_building = temp_scene_building.instantiate()
+				var building_pos = buildable.map_to_local(top_left_pos)
+				spawn_building.position = building_pos
+				add_child(spawn_building)

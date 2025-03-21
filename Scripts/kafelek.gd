@@ -20,5 +20,6 @@ func _process(delta: float) -> void:
 
 func on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventScreenTouch and event.is_pressed():
-		print("TOUCH: ", event.position)
+		#print("TOUCH: ", event.position)
+		pass
 		
